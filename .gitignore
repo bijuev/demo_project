@@ -1,0 +1,62 @@
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django specific
+*.log
+local_settings.py
+db.sqlite3
+/media
+/staticfiles
+
+# Environment files
+.env
+*.env
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-workspace
+*.sublime-project
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+ENV/
+env/
+venv.bak/
+ENV.bak/
+
+# Docker files
+*.dockerfile
+docker-compose.override.yml
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# Distribution / packaging
+*.egg
+*.egg-info
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
