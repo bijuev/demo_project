@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone the Git repository
-                git 'https://github.com/bijuev/demo_project.git'
+                // Clone the Git repository from the main branch
+                git branch: 'main', url: 'https://github.com/bijuev/demo_project.git'
             }
         }
 
@@ -16,24 +16,31 @@ pipeline {
             }
         }
 
+        stage('Start Docker Containers') {
+            steps {
+                // Start the Docker containers
+                sh 'docker compose up -d'
+            }
+        }
+
         stage('Make Migrations') {
             steps {
                 // Run makemigrations inside the Django container
-                sh 'docker compose exec django-app python manage.py makemigrations'
+                sh 'docker compose exec -T django-app python manage.py makemigrations'
             }
         }
 
         stage('Migrate') {
             steps {
                 // Run migrate inside the Django container
-                sh 'docker compose exec django-app python manage.py migrate'
+                sh 'docker compose exec -T django-app python manage.py migrate'
             }
         }
 
         stage('Run Tests') {
             steps {
                 // Run tests for the specific Django app 'first_app' inside the container
-                sh 'docker compose exec django-app python manage.py test first_app'
+                sh 'docker compose exec -T django-app python manage.py test first_app'
             }
         }
 
@@ -49,6 +56,7 @@ pipeline {
         always {
             // Clean up or notify after the pipeline finishes
             echo "Pipeline completed"
+             // sh 'docker compose down'
         }
     }
 }
