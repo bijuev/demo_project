@@ -56,7 +56,7 @@ pipeline {
         always {
             // Clean up or notify after the pipeline finishes
             echo "Pipeline completed"
-             // sh 'docker compose down'
+             sh 'docker compose down'
         }
     }
 }
