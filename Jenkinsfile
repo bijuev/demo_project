@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the Git repository
+                git 'https://github.com/bijuev/demo_project.git'
+            }
+        }
+
         stage('Build Docker Containers') {
             steps {
                 // Build the Docker containers using docker-compose
